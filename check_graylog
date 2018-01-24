@@ -44,7 +44,7 @@ while getopts ":t:u:q:f:b:w:c:" arg; do
 	esac
 done
 
-if [ -z ${API_BASE_URL+x} ] || [ -z ${API_USER+x} ] || [ -z ${API_PASSWORD+x} ] || [ -z ${WARNING_LEVEL+x} ] || [ -z ${CRITICAL_LEVEL+x} ] || [ -z ${API_GREP+x} || [ -z ${LEVEL_TYPE+x} ]
+if [ -z ${API_BASE_URL+x} ] || [ -z ${API_USER+x} ] || [ -z ${API_PASSWORD+x} ] || [ -z ${WARNING_LEVEL+x} ] || [ -z ${CRITICAL_LEVEL+x} ] || [ -z ${API_GREP+x} ] || [ -z ${LEVEL_TYPE+x} ]
 then
 	usage
 fi
@@ -60,8 +60,6 @@ if [ "${API_GREP_OK}" != "1" ]; then
 	echo "Invalid Stat Function ${API_GREP}" 1>&2
 	exit 4
 fi
-
-echo ${WARNING_LEVEL} ${CRITICAL_LEVEL}
 
 if [ "${LEVEL_TYPE}" == "lower" ]; then
 	if [ $(awk 'BEGIN {print ('${WARNING_LEVEL}' >= '${CRITICAL_LEVEL}')}') == "1" ]; then
